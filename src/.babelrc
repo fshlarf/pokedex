@@ -7,10 +7,10 @@
     ["module-resolver", {
       "root": ["."],
       "alias": {
-          "@pages": "./pages",
-          "@components": "./components",
-          "@services": "./services",
-          "@assets": "./assets"          
+        "@pages": "./pages",
+        "@components": "./components",
+        "@services": "./services",
+        "@assets": "./assets"          
        }
     }]
   ]
