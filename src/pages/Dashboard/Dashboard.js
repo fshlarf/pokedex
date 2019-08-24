@@ -12,13 +12,25 @@ class Dashboard extends Component {
   }
   fetchData = async () => {
     const res = await http.get('/')
-    console.log(res);
+    console.log(res.data);
     
   }
   render() {
     return  (
-      <div className="container">
-        <Card/>
+      <div>
+        <h2 className="dashboard__heading">POKEDEX</h2>
+        <div className="dashboard__content">
+          <Card/>
+          <Card/>
+          <Card/>
+          <Card/>
+          <Card/>
+          <Card/>
+
+
+
+
+        </div>
       </div>
     )
   }

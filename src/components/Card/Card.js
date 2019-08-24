@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './CardStyle.scss'
 
-
-
 class card extends Component {
   constructor(props) {
     super(props)
@@ -15,33 +13,16 @@ class card extends Component {
         },
         {
           type: {
-            name: 'flying'
+            name: 'fire'
           }
         }
-      ],
-      test: [1,2,3]
+      ]
     }
-  }
-  componentWillMount() {
-    // console.log(PokeAbbility);
-    
   }
   render() {
     const PokeAbility = this.state.types.map((e, index)=> {
       let className = 'ability'
-      if (e.type.name === 'grass') {
-        className += ' grass'
-      } else if (e.type.name === 'poison') {
-        className += ' poison'
-      } else if (e.type.name === 'water') {
-        className += ' water'
-      } else if (e.type.name === 'fire') {
-        className += ' fire'
-      } else if (e.type.name === 'flying') {
-        className += ' flying'
-      } else if (e.type.name === 'bug') {
-        className += ' bug'
-      }
+      className += ' ' + e.type.name 
       return (<p className={className} key={index}>{e.type.name}</p>)
     })
     return  (

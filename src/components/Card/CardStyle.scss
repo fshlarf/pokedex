@@ -1,5 +1,7 @@
 .card {
   width: 23.4375%;
+  margin-bottom: 80px;
+  cursor: pointer;
   &__img {
     img {
       background-color: #F2F2F2;
@@ -22,8 +24,10 @@
       margin-top: 0;
     }
     &-ability {
+      width: 82.4375%;
       margin-top: -10px;
       display: flex;
+      flex-wrap: wrap;
     }
   }
 }
@@ -34,6 +38,9 @@
   padding: 2px;
   border-radius: 5px;
   text-align: center;
+  background-color: #a4acaf;
+  color: #212121;
+  margin-bottom: -10px;
 }
 .grass {
   color: #212121;
@@ -60,3 +67,49 @@
   color: white;
   background-color: #729f3f;
 }
+.fairy {
+  color: #212121;
+  background-color: #fdb9e9;
+}
+.ghost {
+  color: white;
+  background-color: #7b62a3;
+}
+.ground {
+  background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+  background-color: #f7de3f;
+  color: #212121;
+}
+.normal {
+  background-color: #a4acaf;
+  color: #212121;
+}
+.psychic {
+  background-color: #f366b9;
+  color: #fff;
+}
+.steel {
+  background-color: #9eb7b8;
+  color: #212121;
+}
+.dark {
+  background-color: #707070;
+  color: #fff;
+}
+.electric {
+  background-color: #eed535;
+  color: #212121;
+}
+.fighting {
+  background-color: #d56723;
+  color: #fff;
+}
+.ice {
+  background-color: #51c4e7;
+  color: #212121;
+}
+.rock {
+  background-color: #a38c21;
+  color: #fff;
+}
+

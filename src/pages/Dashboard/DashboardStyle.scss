@@ -1,2 +1,14 @@
 .dashboard {
+  &__heading {
+    font-family: "Flexo-Demi",arial,sans-serif;
+    text-align: center;
+  }
+  &__content {
+    margin: 0 auto;
+    padding: 80px;
+    padding-top: 10px;
+    width: 71rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
