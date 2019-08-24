@@ -1,8 +1,9 @@
-import React from 'react';
+import React from 'react'
+import Dashboard from './pages/Dashboard/Dashboard'
 
 function App() {
   return (
-    <div>Hallo from pokedex</div>
+    <Dashboard/>
   );
 }
 
