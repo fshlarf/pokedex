@@ -1,0 +1,17 @@
+{
+  "presets": [
+    "@babel/preset-flow",
+    "react"
+  ],
+  "plugins": [
+    ["module-resolver", {
+      "root": ["."],
+      "alias": {
+          "@pages": "./pages",
+          "@components": "./components",
+          "@services": "./services",
+          "@assets": "./assets"          
+       }
+    }]
+  ]
+}
