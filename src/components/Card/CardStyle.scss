@@ -1,0 +1,62 @@
+.card {
+  width: 23.4375%;
+  &__img {
+    img {
+      background-color: #F2F2F2;
+    }
+  }
+  &__body {
+    padding-left: 10px;
+    &-id {
+      font-family: "Flexo-Bold",arial,sans-serif;
+      color: #919191;
+      font-size: 15px;
+      margin-top: 0;
+      font-weight: 600;
+    }
+    &-heading {
+      font-family: "Flexo-Demi",arial,sans-serif;
+      color: #313131;
+      font-size: 145%;
+      margin-bottom: 5px;
+      margin-top: 0;
+    }
+    &-ability {
+      margin-top: -10px;
+      display: flex;
+    }
+  }
+}
+
+.ability {
+  margin-right: 10px;
+  width: 70px;
+  padding: 2px;
+  border-radius: 5px;
+  text-align: center;
+}
+.grass {
+  color: #212121;
+  background-color: #9bcc50;
+}
+.poison {
+  color: white;
+  background-color: #b97fc9;
+}
+.water {
+  color: white;
+  background-color: #4592c4;
+}
+.fire {
+  color: white;
+  background-color: #fd7d24;
+}
+.flying {
+  background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+  background-color: #3dc7ef;
+  color: #212121;
+}
+.bug {
+  color: white;
+  background-color: #729f3f;
+}

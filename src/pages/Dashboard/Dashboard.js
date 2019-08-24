@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Card from '../../components/Card/Card'
 import './DashboardStyle.scss'
 
 class Dashboard extends Component {
@@ -7,7 +8,9 @@ class Dashboard extends Component {
   }
   render() {
     return  (
-      <div className="dashboard">Hello from dashboard</div>
+      <div className="container">
+        <Card/>
+      </div>
     )
   }
 }
