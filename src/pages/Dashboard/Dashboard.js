@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './DashboardStyle.scss'
 
 class Dashboard extends Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class Dashboard extends Component {
   }
   render() {
     return  (
-      <div>Hello from dashboard</div>
+      <div className="dashboard">Hello from dashboard</div>
     )
   }
 }
