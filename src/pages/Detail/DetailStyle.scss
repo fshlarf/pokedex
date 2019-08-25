@@ -12,6 +12,9 @@
     text-align: center;
     width: 100%;
     word-break: break-word;
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
   &__top {
     display: flex;
@@ -23,9 +26,6 @@
       width: 50%;   
       padding: 20px;
     }
-  }
-  &__bottom {
-
   }
 }
 .left {
@@ -45,19 +45,70 @@
   &__data {
     background-color: #30a7d7;
     padding: 18px;
+    padding-left: 38px;
+    padding-right: 38px;
     border: none;
     border-radius: 10px;
-    margin-top: 20px;
     font-family: "Flexo-Medium",arial,sans-serif;
+    height: 14rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    &-container {
+      margin-bottom: -15px;
+    }
     &-key {
       color: #fff;
+      margin-bottom: -8px;
+      font-size: 20px;
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
     &-value {
+      &::first-letter {
+        text-transform: uppercase;
+      }
       color: #212121;
     }
   }
-  &__weakness {
+  &__type {
+    &-ability {
+      margin-top: -10px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  &__stats {
     margin-top: 40px;
+    background-color: #a4a4a4;
+    padding: 16px;
+    border-radius: 10px;
+    font-family: "Flexo-Medium",arial,sans-serif;
+    &-content {
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+    &-heading {
+      font-family: "Flexo-Medium",arial,sans-serif;
+      clear: both;
+      color: #212121;
+      margin-top: 5px;
+    }
+  }
+  &__button {
+    margin-top: 40px;
+    float: right;
+    button {
+      background-color: #ee6b2f;
+      color: #fff;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      padding: 10px 38px;
+      font-size: 18px;
+    }
   }
 }
 .heading {
@@ -66,13 +117,12 @@
   color: #212121;
   margin-top: 1.25em;
 }
-
 .ability {
   font-family: "Flexo-Medium",arial,sans-serif;
   font-size: 13px;
   margin-right: 10px;
-  width: 70px;
-  padding: 2px;
+  width: 32.29%;
+  padding: 10px;
   border-radius: 5px;
   text-align: center;
   background-color: #a4acaf;
@@ -80,6 +130,14 @@
   margin-bottom: -10px;
   &::first-letter {
     text-transform: uppercase;
+  }
+}
+.gender {
+  display: flex;
+  &-img {
+    margin-left: -10px;
+    width: 3rem;
+    height: 3rem;
   }
 }
 .grass {

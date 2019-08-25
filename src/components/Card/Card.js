@@ -3,8 +3,7 @@ import './CardStyle.scss'
 import http from './../../services/http'
 import { connect } from 'react-redux'
 import { storeData } from './../../redux/actions'
-import { withRouter} from 'react-router-dom';
-
+import { withRouter} from 'react-router-dom'
 
 class card extends Component {
   constructor(props) {
@@ -36,9 +35,7 @@ class card extends Component {
     })
   }
   openDetail = e => {
-    // console.log(this.props.history);
-    this.props.history.push('/detail')
-    
+    this.props.history.push('/detail/' + parseInt(this.state.id))
   }
   render() {
     const PokeAbility = this.state.types.map((e, index)=> {
@@ -52,7 +49,6 @@ class card extends Component {
           <img
             src={'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + this.state.id + '.png'}
           />
-          {/* available API don't serve the urlImg, just url sprites, so to get image, i use link at above of this comment and combine with id of each item */}
         </div>
         <div className="card__body">
           <p className="card__body-id">#{this.state.id}</p>
