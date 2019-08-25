@@ -6,10 +6,10 @@ const initialState = {
 }
 
 const reducer = function(state = initialState, action) {
-  if (types.GET_DATA) {
-    console.log('Hallo from reducer');
+  if (types.STORE_DATA) {
     return {
-      ...state
+      ...state,
+      pokeData: [...state.pokeData, action.payload]
     }
   }
 }

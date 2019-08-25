@@ -1,14 +1,30 @@
 .dashboard {
+  margin: 0 auto;
+  width: 71rem;
+  margin-bottom: 5rem;
   &__heading {
     font-family: "Flexo-Demi",arial,sans-serif;
     text-align: center;
   }
   &__content {
-    margin: 0 auto;
     padding: 80px;
     padding-top: 10px;
-    width: 71rem;
     display: flex;
     flex-wrap: wrap;
+  }
+  &__containerBtn {
+    text-align: center;
+    margin-top: -5rem;
+    button {
+      background-color: #30a7d7;
+      color: #fff;
+      font-family: "Flexo-Demi",arial,sans-serif;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      line-height: 125%;
+      margin: 1.5625%;
+      padding: 10px 40px;
+    }
   }
 }

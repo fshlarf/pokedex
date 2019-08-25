@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiMoc = 'https://pokeapi.co/api/v2/pokemon'
+const apiMoc = ''
 
 const url = process.env.NODE_ENV === 'production' ? apiMoc : apiMoc
 

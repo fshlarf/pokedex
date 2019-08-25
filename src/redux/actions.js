@@ -1,7 +1,7 @@
 export const types = {
-  GET_DATA: 'get data'
+  STORE_DATA: 'get data'
 }
 
-export function getData() {
-  return { type: types.GET_DATA }
+export function storeData(payload) {
+  return { type: types.STORE_DATA, payload}
 }

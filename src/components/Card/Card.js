@@ -1,23 +1,38 @@
 import React, { Component } from 'react'
 import './CardStyle.scss'
+import http from './../../services/http'
+import { connect } from 'react-redux'
+import { storeData } from './../../redux/actions'
 
 class card extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      types: [
-        {
-          type: {
-            name: 'poison'
-          }
-        },
-        {
-          type: {
-            name: 'fire'
-          }
-        }
-      ]
+      id: '',
+      name: '',
+      types: [],
+      allPokeData: []
     }
+  }
+  componentDidMount() {
+    this.getData()
+  }
+  getData = async () => {
+    const res = await http.get(this.props.url)
+    let stringId = (res.data.id).toString()
+    if (stringId.length === 1) {
+      stringId =  '00' + stringId
+    } else if (stringId.length === 2) {
+      stringId = '0' + stringId
+    } else {
+      stringId = stringId
+    }
+    this.setState({
+      id: stringId,
+      name: res.data.name,
+      types: res.data.types,
+    })
+    // this.props.storeData(res.data)
   }
   render() {
     const PokeAbility = this.state.types.map((e, index)=> {
@@ -29,17 +44,25 @@ class card extends Component {
       <div className="card">
         <div className="card__img">
           <img
-            src='https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png'
+            src={'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + this.state.id + '.png'}
           />
         </div>
         <div className="card__body">
-          <p className="card__body-id">#001</p>
-          <h5 className="card__body-heading">Bulbasaur</h5>
+          <p className="card__body-id">#{this.state.id}</p>
+          <h5 className="card__body-heading">{this.state.name}</h5>
           <div className="card__body-ability">{PokeAbility}</div>
         </div>
       </div>
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    pokeData: state.pokeData
+  }
+}
+const mapDispatchToProps  = dispatch => ({
+  storeData: (payload) => {dispatch(storeData(payload))}
+})
 
-export default card
+export default connect(mapStateToProps, mapDispatchToProps) (card)

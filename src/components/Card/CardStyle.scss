@@ -22,6 +22,9 @@
       font-size: 145%;
       margin-bottom: 5px;
       margin-top: 0;
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
     &-ability {
       width: 82.4375%;
@@ -41,6 +44,9 @@
   background-color: #a4acaf;
   color: #212121;
   margin-bottom: -10px;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 .grass {
   color: #212121;
