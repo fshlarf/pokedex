@@ -1,7 +1,14 @@
 .dashboard {
+  font-family: "Flexo-Medium",arial,sans-serif;
   margin: 0 auto;
   width: 71rem;
   margin-bottom: 5rem;
+  &__filter {
+    width: 20rem;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: 9.6rem;
+  }
   &__loader {
     margin: 0 auto;
     text-align: center;
@@ -17,7 +24,6 @@
     }
   }
   &__heading {
-    font-family: "Flexo-Demi",arial,sans-serif;
     text-align: center;
   }
   &__content {
@@ -32,7 +38,6 @@
     button {
       background-color: #30a7d7;
       color: #fff;
-      font-family: "Flexo-Demi",arial,sans-serif;
       border-radius: 5px;
       border: none;
       cursor: pointer;
