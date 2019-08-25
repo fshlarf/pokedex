@@ -46,6 +46,7 @@ class card extends Component {
           <img
             src={'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + this.state.id + '.png'}
           />
+          {/* available API don't serve the urlImg, just url sprites, so to get image, i use link at above of this comment and combine with id of each item */}
         </div>
         <div className="card__body">
           <p className="card__body-id">#{this.state.id}</p>

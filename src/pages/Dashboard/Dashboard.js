@@ -4,6 +4,7 @@ import './DashboardStyle.scss'
 import { connect } from 'react-redux'
 import { storeData } from '../../redux/actions'
 import http from './../../services/http'
+import PokeBall from './../../assets/img/pokeball.jpg'
 
 class Dashboard extends Component {
   constructor(props) {
@@ -59,12 +60,21 @@ class Dashboard extends Component {
     return  (
       <div className="dashboard">
         <h2 className="dashboard__heading" onClick={() => console.log(this.state.pokeResultBinds)}>POKEDEX</h2>
-        <div className="dashboard__content">
-          {CardPoke}
-        </div>
-        <div className="dashboard__containerBtn">
-          <button className="dashboard__btn" onClick={this.loadMore}>Load More Pokémon</button>
-        </div>
+        { this.state.isLoading ? 
+          ( <div className="dashboard__loader">
+              <img src={PokeBall}/>
+              <h5>Please wait...</h5>
+            </div>) 
+          : (
+            <div>
+              <div className="dashboard__content">
+                {CardPoke}
+              </div>
+              <div className="dashboard__containerBtn">
+                <button className="dashboard__btn" onClick={this.loadMore}>Load More Pokémon</button>
+              </div>
+            </div>
+          ) }
       </div>
     )
   }
