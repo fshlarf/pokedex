@@ -3,6 +3,8 @@ import './CardStyle.scss'
 import http from './../../services/http'
 import { connect } from 'react-redux'
 import { storeData } from './../../redux/actions'
+import { withRouter} from 'react-router-dom';
+
 
 class card extends Component {
   constructor(props) {
@@ -32,7 +34,11 @@ class card extends Component {
       name: res.data.name,
       types: res.data.types,
     })
-    // this.props.storeData(res.data)
+  }
+  openDetail = e => {
+    // console.log(this.props.history);
+    this.props.history.push('/detail')
+    
   }
   render() {
     const PokeAbility = this.state.types.map((e, index)=> {
@@ -41,7 +47,7 @@ class card extends Component {
       return (<p className={className} key={index}>{e.type.name}</p>)
     })
     return  (
-      <div className="card">
+      <div className="card" onClick={this.openDetail}>
         <div className="card__img">
           <img
             src={'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + this.state.id + '.png'}
@@ -66,4 +72,4 @@ const mapDispatchToProps  = dispatch => ({
   storeData: (payload) => {dispatch(storeData(payload))}
 })
 
-export default connect(mapStateToProps, mapDispatchToProps) (card)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (card))

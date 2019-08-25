@@ -31,14 +31,15 @@ class Dashboard extends Component {
       pokeResults: [...this.state.pokeResults, ...res.data.results],
       nextAPI: res.data.next
     })
+    this.setState({ isLoading: false })
+    this.state.pokeResults.map((item) => {
+      if (this.state.pokeResultBinds.length < 12) {
+        this.setState({ pokeResultBinds: [...this.state.pokeResultBinds, item] })
+      }
+    })
     if (res.data.next === null) {
       this.props.storeData(this.state.pokeResults)
-      this.state.pokeResults.map((item) => {
-        if (this.state.pokeResultBinds.length < 12) {
-          this.setState({ pokeResultBinds: [...this.state.pokeResultBinds, item] })
-        }
-      })
-      this.setState({ isLoading: false })
+      return
     }
     this.fethData()    
   }
