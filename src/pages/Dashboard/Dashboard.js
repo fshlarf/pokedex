@@ -73,7 +73,7 @@ class Dashboard extends Component {
           this.setState({ highToLow: false })
           this.setHighToLow()
         }
-        if (this.state.setAlphabet) {
+        if (!this.state.setAlphabet) {
           this.setState({ setAlphabet: true })
           this.setLowtoHigh()
         }
