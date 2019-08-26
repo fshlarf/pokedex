@@ -21,7 +21,8 @@ class Dashboard extends Component {
       current: 12,
       titleBtn: 'Lowest Number (First)',
       showOption: false,
-      highToLow: false
+      highToLow: false,
+      setAlphabet: false
     }
   }
   componentDidMount() {
@@ -32,10 +33,7 @@ class Dashboard extends Component {
     let baseAPI = ''
     nextAPI !== '' ? baseAPI = nextAPI : baseAPI = 'https://pokeapi.co/api/v2/pokemon/?offset=' + offset + '&limit=' + limit
     const res = await http.get(baseAPI)
-    this.setState({ 
-      pokeResults: [...this.state.pokeResults, ...res.data.results],
-      nextAPI: res.data.next
-    })
+    this.setState({ pokeResults: [...this.state.pokeResults, ...res.data.results], nextAPI: res.data.next })
     this.setState({ isLoading: false })
     this.state.pokeResults.map((item) => {
       if (this.state.pokeResultBinds.length < 12) {
@@ -49,63 +47,71 @@ class Dashboard extends Component {
     this.fethData()    
   }
   filterArray = () => {
-    this.state.pokeResultsTemp = this.state.pokeResults.filter((e, index) => {
-      return index < 807
-    })
-    this.props.storeData(this.state.pokeResultsTemp)
-    this.setState({pokeResults: this.state.pokeResultsTemp})
-    console.log(this.props.pokeData[1]);
+    this.state.pokeResultsTemp = this.state.pokeResults
+    this.props.storeData(this.state.pokeResults)
+    this.state.pokeResults = this.state.pokeResults.filter((e, index) => {return index < 807})
   }
   loadMore = () => {
     let oldCurrent = this.state.current
-    this.setState({
-      current: this.state.current + 12
-    })
+    this.setState({current: this.state.current + 12})
     setTimeout(() => {
       for (let i = oldCurrent; i <=  this.state.current - 1; i++) {
         this.setState({ pokeResultBinds: [...this.state.pokeResultBinds, this.state.pokeResults[i]] })
       }
-    }, 100);
+    }, 100)
   }
-  chooseFilter = (type) => {
+  chooseFilter = (type) => { 
+    this.openOptions() 
+    this.setState({ pokeResultBinds: [], current: 0 })
     if (type === 'low') {
       this.setState({ titleBtn: 'Lowest Number (First)' })
-      this.openOptions()
-      if (this.state.highToLow === true) {
+      if (this.state.highToLow && this.state.setAlphabet) {
+        this.setState({ highToLow: false, setAlphabet: false })
         this.setLowtoHigh()
-        this.setState({ highToLow: false })
+      } else {
+        if (this.state.highToLow) {
+          this.setState({ highToLow: false })
+          this.setHighToLow()
+        }
+        if (this.state.setAlphabet) {
+          this.setState({ setAlphabet: true })
+          this.setLowtoHigh()
+        }
       }
     } else if (type === 'high') {
-      console.log(this.state.pokeResultsTemp);
-      this.openOptions()
       this.setState({ titleBtn: 'Highest Number (First)' })
-      if (this.state.highToLow === false) {
-        this.setState({ highToLow: true })
+      if (!this.state.highToLow) {
+        this.setState({ highToLow: true})
         this.setHighToLow()
       }
     } else if (type === 'A') {
-      this.setState({ titleBtn: 'A - Z' })
-      this.openOptions()      
+      this.setState({ setAlphabet: true })
+      this.setState({ titleBtn: 'A - Z'})
+      setTimeout(() => {
+        this.setAtoZ() 
+      }, 100);     
     } else {
-      this.setState({ titleBtn: 'Z - A' })
-      this.openOptions()      
+      this.setState({ setAlphabet: true, titleBtn: 'Z - A' })
+      this.setZtoA()   
     }
+    setTimeout(() => {this.loadMore()}, 100)    
   }
   setLowtoHigh = () => {
-    this.setState({ 
-      pokeResultBinds: [],
-      pokeResults: this.state.pokeResults.reverse(),
-      current: 0
-    })
-    setTimeout(() => {this.loadMore()}, 100);
+    this.state.pokeResults = this.state.pokeResultsTemp.filter((e, index) => {return index < 807})
   }
   setHighToLow = () => {
-    this.setState({ 
-      pokeResultBinds: [],
-      pokeResults: this.state.pokeResults.reverse(),
-      current: 0
+    this.state.pokeResults = this.state.pokeResultsTemp.filter((e, index) => {return index < 807}).reverse()
+  }
+  setAtoZ = () => {
+    this.state.pokeResults.sort((a,b) => {
+      let nameA = a.name.toUpperCase()
+      let nameB = b.name.toUpperCase()
+      return nameA.localeCompare(nameB)
     })
-    setTimeout(() => {this.loadMore()}, 100);
+  }
+  setZtoA = () => {
+    this.setAtoZ()
+    this.state.pokeResults.reverse()
   }
   openOptions = () => {
     this.setState({ showOption: !this.state.showOption })
