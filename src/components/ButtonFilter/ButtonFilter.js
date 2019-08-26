@@ -7,7 +7,7 @@ class ButtonFilter extends Component {
     super(props)
     this.state = {
       titleBtn: 'Lowest Number (First)',
-      showOption: false
+      showOption: this.props.showOption
     }
   }
   openOptions = () => {
@@ -16,10 +16,10 @@ class ButtonFilter extends Component {
   render() {
     return (
       <div>
-        <div className="filter" onClick={this.openOptions}>
-          <div className="filter__btn">{this.state.titleBtn} <img src={ChevronDown}/></div>
+        <div className="filter" onClick={this.props.openOptions}>
+          <div className="filter__btn">{this.props.titleBtn} <img src={ChevronDown}/></div>
         </div>
-        {this.state.showOption ? 
+        {this.props.showOption ? 
           (<div className="option">
             <p onClick={this.props.clickLowToHight}>Lowest Number (First)</p>
             <p onClick={this.props.clickHighToLow}>Highest Number (First)</p>

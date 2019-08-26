@@ -13,11 +13,15 @@ class Dashboard extends Component {
     this.state = {
       nextAPI: '',
       pokeResults: [],
+      pokeResultsTemp: [],
       pokeResultBinds: [],
       offset: 0,
       limit: 100,
       isLoading: true,
-      current: 12
+      current: 12,
+      titleBtn: 'Lowest Number (First)',
+      showOption: false,
+      highToLow: false
     }
   }
   componentDidMount() {
@@ -39,10 +43,18 @@ class Dashboard extends Component {
       }
     })
     if (res.data.next === null) {
-      this.props.storeData(this.state.pokeResults)
-      return
+      this.filterArray()
+      return      
     }
     this.fethData()    
+  }
+  filterArray = () => {
+    this.state.pokeResultsTemp = this.state.pokeResults.filter((e, index) => {
+      return index < 807
+    })
+    this.props.storeData(this.state.pokeResultsTemp)
+    this.setState({pokeResults: this.state.pokeResultsTemp})
+    console.log(this.props.pokeData[1]);
   }
   loadMore = () => {
     let oldCurrent = this.state.current
@@ -55,16 +67,65 @@ class Dashboard extends Component {
       }
     }, 100);
   }
+  chooseFilter = (type) => {
+    if (type === 'low') {
+      this.setState({ titleBtn: 'Lowest Number (First)' })
+      this.openOptions()
+      if (this.state.highToLow === true) {
+        this.setLowtoHigh()
+        this.setState({ highToLow: false })
+      }
+    } else if (type === 'high') {
+      console.log(this.state.pokeResultsTemp);
+      this.openOptions()
+      this.setState({ titleBtn: 'Highest Number (First)' })
+      if (this.state.highToLow === false) {
+        this.setState({ highToLow: true })
+        this.setHighToLow()
+      }
+    } else if (type === 'A') {
+      this.setState({ titleBtn: 'A - Z' })
+      this.openOptions()      
+    } else {
+      this.setState({ titleBtn: 'Z - A' })
+      this.openOptions()      
+    }
+  }
+  setLowtoHigh = () => {
+    this.setState({ 
+      pokeResultBinds: [],
+      pokeResults: this.state.pokeResults.reverse(),
+      current: 0
+    })
+    setTimeout(() => {this.loadMore()}, 100);
+  }
+  setHighToLow = () => {
+    this.setState({ 
+      pokeResultBinds: [],
+      pokeResults: this.state.pokeResults.reverse(),
+      current: 0
+    })
+    setTimeout(() => {this.loadMore()}, 100);
+  }
+  openOptions = () => {
+    this.setState({ showOption: !this.state.showOption })
+  }
   render() { 
     const CardPoke = this.state.pokeResultBinds.map((e, index)=> {
       return <Card key={index} url={e.url}/>
     })
     return  (
       <div className="dashboard">
-        <h2 className="dashboard__heading" onClick={() => console.log(this.state.pokeResultBinds)}>POKEDEX</h2>
+        <h2 className="dashboard__heading" onClick={() => console.log(this.state.pokeResults)}>POKEDEX</h2>
         <div className="dashboard__filter">
           <ButtonFilter
-          
+            titleBtn={this.state.titleBtn}
+            showOption={this.state.showOption}
+            openOptions={this.openOptions}
+            clickLowToHight={() => this.chooseFilter('low')}
+            clickHighToLow={() => this.chooseFilter('high')}
+            clickAtoZ={() => this.chooseFilter('A')}
+            clickZtoA={() => this.chooseFilter('Z')}
           />
         </div>
         <div>
@@ -97,7 +158,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps  = dispatch => ({
-  storeData: (payload) => {dispatch(storeData(payload))}
+  storeData: (payload) => {dispatch(storeData(payload))},
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Dashboard)
